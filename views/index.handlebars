@@ -1,39 +1,85 @@
-<h1>Cats!</h1>
-
-<h2>Cats that are not sleepy!</h2>
-
+<h1>Burger Consumption Tracking List</h1>
+<br>
+<h2>Burgers you have eaten!</h2>
+<br>
 <ul>
     {{#each burgers}}
         {{#unless devoured}}
-            {{> burgers/burgers-block sleep=true}}
+            {{> burgers/burgers-block devoured=true}}
         {{/unless}}
     {{/each}}
 </ul>
-
-<h2>Cats that are sleepy!</h2>
-
+<br>
+<h2>Burgers you ordered!</h2>
+<br>
 <ul>
     {{#each burgers}}
         {{#if devoured}}
-            {{> burgers/burgers-block sleep=false}}
+            {{> burgers/burgers-block devoured=false}}
         {{/if}}
     {{/each}}
 </ul>
-
-<h2>Add a Cat</h2>
-<form class="create-form">
+<br>
+<h2>Which Burger did you want to order?</h2>
+<br>
+<form class="create-form" id="radioform" action="">
 
     <div class="form-group">
-        <label for="ca">Cat Name:</label>
-        <input type="text" id="ca" name="name">
+        <label for="ca">Burger Name:</label>
+<br>
+
+            <p><label><input type="radio" name="field" value="Tandoori Cheeseburger" onchange='check_value()'/>Tandoori Cheeseburger</label></p>
+            <p><label><input type="radio" name="field" value="Chicken Tika Burger" onchange='check_value()'/>Chicken Tika Masala Burger</label></p>
+            <p><label><input type="radio" name="field" value="Dosa Cheeseburger" onchange='check_value()'>Dosa Cheeseburger</label></p>
+            <p><label><input type="radio" name="field" value="Tandoori Veggie Burger" onchange='check_value()'>Tandoori Veggie Burger</label></p>
+            <p><label><input type="radio" name="field" value="Tandoori Cheeseburger" onchange='check_value()'>Saag Paneer Mushroom Burger</label></p>
+            <p><label><input type="radio" name="field" value="Chicken Tika Burger" onchange='check_value()'>Biryani Burger</label></p>
+
+            <p><input type="text" name="text" id="ca" placeholder="Choose One or Add"></p>
+<br>
+        <button type="submit" >Add Burger</button>
+
     </div>
 
     <div class="form-group">
-        <label for="sleepy">Sleepy?</label><br>
-        <input type="radio" name="sleepy" value="1" checked> Sleepy!<br>
-        <input type="radio" name="sleepy" value="0"> Awake
+
+
+        <input hidden type="radio" name="sleepy" value="1" checked><br>
+
     </div>
 
-    <button type="submit">Add Cat</button>
+
 </form>
+<div id="imagetest"></div>
+<br>
+<br>
 
+
+<script type="text/javascript">
+    function setText() {
+        var form = this.form;
+        form.elements.text.value = this.value;
+    }
+
+    var form = document.getElementById('radioform'),
+            radios = form.elements.field,
+            i;
+    for (i = 0; i < radios.length; i += 1) {
+        radios[i].onclick = setText;
+    }
+
+
+    function check_value(value){
+        switch(value){
+            case "Tandoori Cheeseburger":
+                document.getElementById("imagetest").innerHTML = "<img src='/assets/css/burger.jpg'>";
+                break;
+            case "Chicken Tika Burger":
+                document.getElementById("imagetest").innerHTML = "<img src='/assets/css/burger2.jpg'>";
+                break;
+            case "Dosa Cheeseburger":
+                document.getElementById("imagetest").innerHTML = "<img src='images/thirdimage.png'>";
+                break;
+        }
+    }
+</script>

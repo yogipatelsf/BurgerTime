@@ -1,7 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 
-var PORT = 3306;
+var PORT = 8080;
 
 var app = express();
 
